@@ -4,14 +4,14 @@ import Dash from "./container/dash";
 import Register from "./container/register";
 import Login from "./container/login";
 import { AuthContext } from "./context/auth";
-import { BrowserRouter, Route, Routes, Navigate  } from "react-router-dom";
+import { BrowserRouter, Route, Routes  } from "react-router-dom";
 import { routes } from "./routes";
 import Welcomepage from "./container/welcomepage";
 import Layout from "./components/layout/layout";
 
 
 function App() {
-  const { auth,autoLogin  } = React.useContext(AuthContext);
+  const { auth  } = React.useContext(AuthContext);
   console.log(auth);
 
   return (
