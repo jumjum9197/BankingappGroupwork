@@ -1,5 +1,4 @@
- import { Row, Col } from "react-bootstrap";
-import IMAGES from "../assets/img/images";
+
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
