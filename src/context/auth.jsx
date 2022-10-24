@@ -12,7 +12,6 @@ const initialState = {
   user: {},
   allUsers: JSON.parse(localStorage.getItem("users")) || [],
   currentUser:currentUser,
-  deposited:"",
   withdraw:"",
 deposited:currentUser?.deposit
 };

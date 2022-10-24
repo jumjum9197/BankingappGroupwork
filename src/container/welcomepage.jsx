@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {Col, Container,  Row} from "react-bootstrap";
 import Images from "../assets/img/images";
