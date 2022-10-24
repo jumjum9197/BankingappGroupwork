@@ -75,7 +75,7 @@ const DepositHandle = (e) => {
                  
                  <h5> {Hello()}  { currentUser.firstName}</h5>
                  <button 
-                        class="btn border rounded-pill form-btn w-75 text-white fs-5 input but mt-5 mx-auto" 
+                        className="btn border rounded-pill form-btn w-75 text-white fs-5 input but mt-5 mx-auto" 
                         id="logout" type="button" 
                         onClick={() => {
                             const out = logout();
