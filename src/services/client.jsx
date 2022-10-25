@@ -26,6 +26,7 @@ class Client {
           if (data.email === schema.email && data.password === schema.password) {
             return data;
           }
+          return null;
         });
   
         if (userExist.length > 0) {
@@ -54,6 +55,7 @@ class Client {
           if (data.email === schema.email && data.password === schema.password) {
             return data;
           }
+          return null;
         });
   
         if (userExist[0]?.email && userExist[0]?.password) {

@@ -2,7 +2,7 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
-const Nav = ({}) => {
+const Nav = ()=> {
     return (
         <Navbar>
         <Container>

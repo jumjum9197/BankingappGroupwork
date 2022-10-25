@@ -50,7 +50,8 @@ const AuthProvider = ({ children }) => {
         if (data?.email === current_user?.email) {
           return data;
         }
-      });
+        return null
+      }, []);
 
       if (log.length > 0) {
         authDispatch({ type: "login" });
@@ -86,6 +87,7 @@ const AuthProvider = ({ children }) => {
         if (data.email === current_user.email) {
           return data;
         }
+        return null;
       });
 
       if (log.length > 0) {
@@ -114,12 +116,6 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("current_user");
     return true;
   };
-  const handledeposit =(deposited)=>{
-    authDispatch({type:"INCREMENT",deposited:deposited});
-  }
-  const handledwithdarw =(withdraw)=>{
-    authDispatch({type:"DECREMENT",withdraw:withdraw});
-  }
 
   const handleDeposit = (deposited) => {
     authDispatch({type: 'INCREMENT', deposited: deposited});
