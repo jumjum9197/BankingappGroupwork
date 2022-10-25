@@ -7,4 +7,4 @@ export const routes={
 
 
 }
-export const authroutes=[routes.register, ]
+export const authroutes=[routes.register, routes.welcome, routes.index, routes.login]
