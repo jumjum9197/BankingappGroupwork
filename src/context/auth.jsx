@@ -44,6 +44,7 @@ const AuthProvider = ({ children }) => {
   const [auth, authDispatch] = React.useReducer(reducer, initialState);
 
   React.useEffect(() => {
+    // other code
     const current_user = JSON.parse(localStorage.getItem("current_user"));
     if (current_user) {
       const log = auth.allUsers.filter((data) => {
@@ -58,6 +59,7 @@ const AuthProvider = ({ children }) => {
         authDispatch({ type: "set_user", user: log[0] });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
  
