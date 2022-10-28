@@ -25,7 +25,7 @@ const Register = () => {
     <React.Fragment>
       <Container as={"section"} fluid>
       <Row>
-            <Col lg={6} sm={12}  md={6} className=" d-flex justify-content-center ">
+            <Col lg={6} sm={12}  md={6} className=" d-flex justify-content-center w-75 ">
               <div>
               <center>
               <p className="app">Registration Form</p>

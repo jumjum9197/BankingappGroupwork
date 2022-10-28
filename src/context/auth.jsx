@@ -6,14 +6,15 @@ export const AuthContext = React.createContext({});
 export const getUser = ()=>{
     JSON.parse(localStorage.getItem("current_user"));
 }
-const currentUser = JSON.parse(localStorage.getItem("current_user"));
+
 const initialState = {
   authentication: false,
   user: {},
   allUsers: JSON.parse(localStorage.getItem("users")) || [],
-  currentUser:currentUser,
+
   withdraw:"",
-deposited:currentUser?.deposit
+  deposited:"",
+  transfer:"",
 };
 
 const reducer = (state, action) => {
@@ -25,15 +26,19 @@ const reducer = (state, action) => {
       return { ...state, authentication: false };
 
     case "set_user":
-      return { ...state, users: action?.users };
+      return { ...state, user: action?.user };
 
       case "INCREMENT":
-        return { ...state, currentUser:{...currentUser,deposit:parseFloat(state.currentUser.deposit)
-            +parseFloat(action.deposited)}};
+        return { ...state, user:{...state.user, deposit:parseFloat(state.user.deposit)
+            + parseFloat(action.deposited)}};
+
+            case "TRANSFER":
+              return { ...state, user:{...state.user, deposit:parseFloat(state.user.deposit)
+                  - parseFloat(action.transfer)}};
 
         case "DECREMENT":
-            return { ...state, currentUser:{...currentUser,deposit:parseFloat(state.currentUser.deposit)
-                -parseFloat(action.withdraw)}};
+            return { ...state, user:{...state.user,deposit:parseFloat(state.user.deposit)
+                - parseFloat(action.withdraw)}};
             default:
                 return state
   }
@@ -62,24 +67,6 @@ const AuthProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
- 
- 
-
-  //   React.useEffect(() => {
-  //    localStorage.setItem("current_user", JSON.stringify(auth?.currentUser)) 
-    
-  //   if(auth){
-  //       let result = auth?.allUsers?.findIndex(x => {
-  //           return x.email === auth?.currentUser?.email;
-  //       })
-
-  //       auth.allUsers[result].deposit = auth.currentUser.deposit;
-  //       localStorage.setItem("users", JSON.stringify(auth.allUsers));
-      
-  //   }
-    
-  // }, [auth.currentUser.deposit])
-
 
 
   function autoLogin() {
@@ -103,7 +90,7 @@ const AuthProvider = ({ children }) => {
     const data = client.login({ email, password });
     if (data) {
       authDispatch({ type: "login" });
-      authDispatch({ type: "set_user", users: data });
+      authDispatch({ type: "set_user", user: data });
     }
     return data;
   };
@@ -119,13 +106,56 @@ const AuthProvider = ({ children }) => {
     return true;
   };
 
+  
   const handleDeposit = (deposited) => {
+    if(deposited < 0){
+      alert("you cant deposit negative amount")
+  
+    }
+    else if(deposited == 0){
+      alert("you cant deposit 0 naira")
+    }
+    else 
+
+  
     authDispatch({type: 'INCREMENT', deposited: deposited});
 }
+// const handleTransfer = (transfer) => {
+  
+//   authDispatch({type: 'TRANSFER', transfer: transfer});
+// }
 
 const handleWithdraw = (withdraw) => {
-  authDispatch({type: 'DECREMENT', withdraw: withdraw});
+  if(withdraw > auth.user.deposit){
+    alert("insuffient fund")
+
+  }else
+  if(withdraw < 0 ){
+    alert("you cant withdraw less than negative amount")
+
+  }
+  else if(withdraw == 0){
+    alert("you cant withdraw 0naira")
+  }else
+ 
+  authDispatch({type: 'DECREMENT', withdraw: withdraw });
 }
+
+localStorage.setItem("current_user", JSON.stringify(auth?.user)) 
+    
+  if(auth){
+      let result = auth?.allUsers?.findIndex(x => {
+         return  x.email === auth?.user?.email;
+          
+      })
+
+
+     if(!result){
+      auth.allUsers[result].deposit = auth.user.deposit;
+     }
+      localStorage.setItem("users", JSON.stringify(auth.allUsers));
+    
+  }
 
 
   return (
@@ -136,7 +166,9 @@ const handleWithdraw = (withdraw) => {
         logout,
         register,
         autoLogin,
-        handleDeposit,handleWithdraw
+        handleDeposit,
+        handleWithdraw,
+      
       }}
     >
       {children}

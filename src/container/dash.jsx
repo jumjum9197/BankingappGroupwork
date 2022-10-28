@@ -16,13 +16,13 @@ const Dash = () => {
   const {logout, handleDeposit, handleWithdraw} = React.useContext(AuthContext);
 
   const [show, setShow] = React.useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
      
     const [show1, setShow1] = React.useState(false);
     const handleClose1 = () => setShow1(false);
     const handleShow1 = () => setShow1(true);
+
 
     const redirect=useNavigate()
 
@@ -32,6 +32,7 @@ const Dash = () => {
       withdraw: "",
       depositDescription: "",
       withdrawDescription: "",
+    
   });
 
   const withdrawHandle = (e) => {
@@ -43,6 +44,8 @@ const DepositHandle = (e) => {
   e.preventDefault();
   handleDeposit(transaction.deposited);
 }
+
+
 
     const currentUser = JSON.parse(localStorage.getItem("current_user")) 
 
@@ -78,7 +81,7 @@ const DepositHandle = (e) => {
                         onClick={() => {
                             const out = logout();
                             if (out){
-                                redirect('/welcomepage');
+                                redirect('/');
                             }
                         }}>
                         LogOut
@@ -155,10 +158,8 @@ const DepositHandle = (e) => {
                         </Modal.Footer>
                     </Modal>
                     </div>
-                    
-              
 
-
+                   
 
                 </Col>
                </Row>

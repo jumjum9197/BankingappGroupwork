@@ -21,7 +21,8 @@ function App() {
      <Routes>
 
 {/* <Route path="/" element={<Navigate to={autoLogin()} />} /> */}
-<Route path={"/"} element={<Welcomepage />}/>
+  {/* <Route path={"*"} element={<Pagenotfound />}/> */}
+  <Route path={"/"} element={<Welcomepage />}/>
   <Route path={routes.login} element={<Login />}/>
   <Route path={routes.register}element={<Register />} />
   (auth.authentication &&
